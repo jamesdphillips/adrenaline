@@ -25,6 +25,7 @@ export default class Adrenaline extends Component {
     endpoint: PropTypes.string,
     renderLoading: PropTypes.func,
     request: PropTypes.func,
+    store: PropTypes.func,
   }
 
   static defaultProps = {
@@ -47,7 +48,7 @@ export default class Adrenaline extends Component {
     super(props, context);
 
     this.parsedSchema = parseSchema(props.schema);
-    this.store = createCacheStore(this.parsedSchema, props.createStore);
+    this.store = props.store || createCacheStore(this.parsedSchema, props.createStore);
   }
 
   performQuery(query, params) {
