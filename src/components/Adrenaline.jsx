@@ -24,11 +24,13 @@ export default class Adrenaline extends Component {
     createStore: PropTypes.func,
     endpoint: PropTypes.string,
     renderLoading: PropTypes.func,
+    request: PropTypes.func,
   }
 
   static defaultProps = {
     renderLoading: Loading,
     endpoint: '/graphql',
+    request: request,
   }
 
   getChildContext() {
@@ -49,7 +51,7 @@ export default class Adrenaline extends Component {
   }
 
   performQuery(query, params) {
-    const { endpoint } = this.props;
+    const { endpoint, request } = this.props;
     const { parsedSchema, store } = this;
     const { dispatch } = store;
 
@@ -71,7 +73,7 @@ export default class Adrenaline extends Component {
       'You have to declare "mutation" field in your mutation'
     );
 
-    const { endpoint } = this.props;
+    const { endpoint, request } = this.props;
     const { parsedSchema, store } = this;
     const { dispatch } = store;
 
